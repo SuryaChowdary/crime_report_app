@@ -1,0 +1,28 @@
+<h1> List of all Cities </h1>
+<table>
+  <thead>
+    <tr>
+      <th> Name </th>
+      <th colspan=3> Actions </th>
+    </tr>
+    <tr>
+  </thead>
+    <tbody>
+      <% @city.each do |city| %>
+        <tr>
+      <td><%= city.name %></td>
+      <td><%= link_to 'Show', city_path(city) %></td>
+      <td><%= link_to 'Edit', edit_city_path(city) %></td>
+      <td><%= link_to 'Delete', city_path(city) , method: :delete , data: {confirm: "Are you sure?"}%></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>
+
+<p>
+  <%= link_to 'Add new City' , new_city_path %>
+</p>
+
+<p>
+  <%= link_to 'Home' , root_path %>
+</p>

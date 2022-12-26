@@ -1,0 +1,16 @@
+<h1> List of Cities</h1>
+
+<p><strong> name: </strong> <%= @city.name%></p>
+
+<p> List of all localities of <%= @city.name%> </p>
+  <% @city.localities.each do |locality| %>
+    <table>
+      <tr>
+        <td><%= locality.street %></td>
+     </tr>
+    </table>
+  <% end %>
+
+<p>
+  <%= link_to 'Back' , cities_path %>
+</p>
