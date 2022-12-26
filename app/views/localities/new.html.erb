@@ -16,7 +16,7 @@
 
   <p> 
     <%= f.label :City %> <br/>
-    <%= f.select :city_ids, City.all.collect {|x| [x.name, x.id]}, {} %>
+    <%= f.select :city_id, City.all.collect {|x| [x.name, x.id]}, {} %>
   </p>
 
   <p>
