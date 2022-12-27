@@ -11,6 +11,36 @@
     </table>
   <% end %>
 
+  <br/>
+
+  <p><strong> List of all Crimes in <%=@city.name%> are</strong><p>
+<table>
+  <thead>
+    <tr>
+      <th> Reporter-Name </th>
+      <th> Crime_Description</th>
+      <th> Crime-Time</th>
+      <th> Priority </th>
+      <th> Resolved </th>
+      <th colspan=3> Actions </th>
+    </tr>
+    <tr>
+  </thead>
+  <tbody>
+    <% @city.crimes.each do |crime| %>
+      <tr>
+          <td><%= crime.name %></td>
+          <td><%= crime.crime_description %></td>
+          <td><%= crime.crime_time %></td>
+          <td><%= crime.priority %></td>
+          <td><%= crime.resolved %></td>
+        <td><%= link_to 'Show', crime_path(crime) %></td>
+        <td><%= link_to 'Edit', edit_crime_path(crime) %></td>
+        <td><%= link_to 'Delete', crime_path(crime) , method: :delete , data: {confirm: "Are you sure?"}%></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
 <p>
   <%= link_to 'Back' , cities_path %>
 </p>

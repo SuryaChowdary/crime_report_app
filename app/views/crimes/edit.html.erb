@@ -1,0 +1,55 @@
+<h1> Edit Crime details </h1>
+<% if @crime.errors.any? %>
+  <h2> The following reasons prevented the crime to be reported </h2>
+    <ul>
+     <%= @crime.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+     <% end %>
+    </ul>
+<% end%>
+
+<%= form_with(model: @crime, local: true )do |f| %>
+  
+  <p>
+    <%= f.label :City%> <br/>
+    <%= f.select :city_id, City.all.collect {|x| [x.name, x.id]}, {} %>
+  </p>
+
+  <p>
+    <%= f.label :Locality%> <br/>
+    <%= f.select :locality_id, Locality.all.collect {|x| [x.street, x.id]}, {} %>
+  </p>
+  
+  <p> 
+    <%= f.label :Name %> <br/>
+    <%= f.text_field :name %>
+  </p>
+ 
+  <p> 
+    <%= f.label :description %> <br/>
+    <%= f.text_area :crime_description %>
+  </p>
+    
+  <p>
+    <%= f.label :Date_and_Time %> <br/>
+    <%= f.text_field :crime_time %>
+  </p>
+  
+  <div class="field">    
+    <%= f.label :Priority %></br>
+    <span class="option">High<span><%= f.radio_button :priority, "High" %></br>
+    <span class="option">Medium<span><%= f.radio_button :priority, "Medium" %></br>
+    <span class="option">Low<span><%= f.radio_button :priority, "Low" %></br>
+  </div>
+
+  <div class="field">    
+    <%= f.label :Resolved%></br>
+    <span class="option">False<span><%= f.radio_button :resolved, "False" %></br>
+    <span class="option">True<span><%= f.radio_button :resolved, "True" %></br>
+  </div>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>

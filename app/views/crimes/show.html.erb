@@ -1,0 +1,10 @@
+<h1> List of Crimes</h1>
+
+<p><strong> Crime Locality : </strong><%= @crime.locality_id%>
+<p><strong> Reporter Name:</strong><%= @crime.name%>
+<p><strong> Crime Description: </strong><%= @crime.crime_description%>
+<p><strong> Crime Time: </strong><%= @crime.crime_time%>
+<p><strong> Priority: </strong><%= @crime.priority%>
+<p><strong> Resolved</strong><%= @crime.resolved%>
+
+<p><%= link_to "Back" , crimes_path%>
