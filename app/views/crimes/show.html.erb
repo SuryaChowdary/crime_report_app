@@ -5,7 +5,7 @@
 <p><strong> Reporter Name:</strong><%= @crime.name%></p>
 <p><strong> Crime Description: </strong><%= @crime.crime_description%></p>
 <p><strong> Crime Time: </strong><%= @crime.crime_time%></p>
-  <% if @crime.priority == 'High' %>
+<% if @crime.priority == 'High' %>
   <p><strong>Priority: </strong><span style="color: red"><%= @crime.priority%></span></p>
 <% elsif @crime.priority == 'Medium' %>
   <p><strong>Priority: </strong><span style="color: yellow"><%= @crime.priority%></span></p>
