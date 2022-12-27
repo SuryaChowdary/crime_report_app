@@ -5,6 +5,9 @@
 <p><strong> Reporter Name:</strong><%= @crime.name%></p>
 <p><strong> Crime Description: </strong><%= @crime.crime_description%></p>
 <p><strong> Crime Time: </strong><%= @crime.crime_time%></p>
+<%= content_tag :div, class: "priority-#{@crime.priority}" do %>
+  <%= @crime.priority %>
+<% end %>
 <p><strong> Priority: </strong><%= @crime.priority%></p>
 <p><strong> Resolved: </strong><%= @crime.resolved%></p>
 

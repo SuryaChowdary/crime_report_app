@@ -1,0 +1,34 @@
+<%= form_with(model: @crime, local: true) do |f| %>
+
+<p>
+  <%= f.label :city %>
+  <%= f.select :city_id, options_for_select(City.all.map { |c| [c.name, c.id] }) %>
+</p>
+
+<p>
+  <%= f.label :locality %>
+  <%= f.select :locality_id, options_for_select(Locality.all.map { |l| [l.street, l.id] }) %>
+</p>
+
+<p>
+  <%= f.label :description %>
+  <%= f.text_area :crime_description %>
+</p>
+
+<p>
+  <%= f.label :Date_and_Time %> <br/>
+  <%= f.text_field :crime_time %>
+</p>
+
+<p>
+  <%= f.label :priority %>
+  <%= f.select :priority, options_for_select(%w[high medium low]) %>
+<p>
+
+<p>
+  <%= f.label :Resolved %>
+  <%= f.select :resolved, options_for_select(%w[false true]) %>
+<p>
+  <%= f.submit %>
+</p>
+<% end %>

@@ -3,5 +3,5 @@ class Crime < ApplicationRecord
   validates :crime_time, presence: true
   validates :priority, presence: true
   validates :resolved, presence: true
-  belongs_to :crime_reporter
+  belongs_to :crime_reporter , optional: true
 end
