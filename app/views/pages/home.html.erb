@@ -5,11 +5,8 @@
        <strong>Welcome to Crime Patrol Application</strong>
       </h1>
       <p class="lead">
-      <%= link_to "View Crimes" , crimes_path, class: "btn btn-success btn-lg" %><br/>
-      <%= link_to "View Cities" , cities_path, class: "btn btn-success btn-lg" %><br/>
-      <%= link_to "View Localities" , localities_path, class: "btn btn-success btn-lg"%><br/>
-      <%= link_to "View Crime Reporters" , crime_reporters_path, class: "btn btn-success btn-lg"%><br/>
-    </p>
+      <p><%= link_to 'Report a Crime', citizens_new_path, class: 'btn btn-success btn-lg' %></p>
+      <p><%= link_to 'View Portal' , about_path, class: 'btn btn-success btn-lg' %></p>
     </div>
   </div>
 </div>

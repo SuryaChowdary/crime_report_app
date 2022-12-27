@@ -7,7 +7,7 @@ class CitizensController < ApplicationController
   def create
     @crime = Crime.new(crime_params)
     if @crime.save
-      redirect_to crimes_path(@crime), notice: "Crime was successfully reported."
+      redirect_to @crime, notice: "Crime was successfully reported."
     else
       render new
     end

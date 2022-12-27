@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  root 'pages#home'
+  root 'pages#home' 
   get 'about', to: 'pages#about'
-  #get '/crime_report', to: 'citizens#new'
+  get 'citizens/new', to: 'citizens#new'
   resources :cities
   resources :localities
   resources :crimes
   resources :crime_reporters
-  resources :citizens, only: [:new]
+  get 'pages/about' , to: 'pages#about'
+  #resources :citizens, only: [:new]
 end

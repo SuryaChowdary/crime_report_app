@@ -2,8 +2,8 @@
 <table>
   <thead>
     <tr>
-      <th> City_id </th>
-      <th> Locality_id </th>
+      <th> City Name </th>
+      <th> Locality Name</th>
       <th> Reporter-Name </th>
       <th> Crime_Description</th>
       <th> Crime-Time</th>
@@ -16,12 +16,18 @@
     <tbody>
       <% @crime.each do |crime| %>
         <tr>
-      <td><%= crime.city_id%></td>
-      <td><%= crime.locality_id%></td>
+      <td><%= crime.city.name%></td>
+      <td><%= crime.locality.street%></td>
       <td><%= crime.crime_reporter.reporter_name if crime.crime_reporter %></td>
       <td><%= crime.crime_description%></td>
       <td><%= crime.crime_time%></td>
-      <td><%= crime.priority%></td>
+      <% if crime.priority == 'High' %>
+        <td style="color: red"><%= crime.priority %></td>
+      <% elsif crime.priority == 'Medium' %>
+        <td style="color: yellow"><%= crime.priority %></td>
+      <% elsif crime.priority == 'Low' %>
+        <td style="color: green"><%= crime.priority %></td>
+      <% end %>
       <td><%= crime.resolved%></td>
       <td><%= link_to 'Show', crime_path(crime) %></td>
       <td><%= link_to 'Edit', edit_crime_path(crime) %></td>
