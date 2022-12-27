@@ -1,0 +1,33 @@
+<h1> List of all Crime Reporters in Portal</h1>
+<table>
+  <thead>
+    <tr>
+      <th> Name </th>
+      <th> Gender </th>
+      <th> Phone Number</th>
+      <th> Email </th>
+      <th colspan="3"> Actions </th>
+    </tr>
+  </thead>
+    <tbody>
+      <% @crime_reporter.each do |crime_reporter| %>
+        <tr>
+      <td><%= crime_reporter.reporter_name %></td>
+      <td><%= crime_reporter.gender %></td>
+      <td><%= crime_reporter.phone %></td>
+      <td><%= crime_reporter.email %></td>
+      <td><%= link_to 'Show', crime_reporter_path(crime_reporter) %></td>
+      <td><%= link_to 'Edit', edit_crime_reporter_path(crime_reporter) %></td>
+      <td><%= link_to 'Delete', crime_reporter_path(crime_reporter) , method: :delete , data: {confirm: "Are you sure?"}%></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>
+
+<p>
+  <%= link_to 'Add new Crime Reporter' , new_crime_reporter_path %>
+</p>
+
+<p>
+  <%= link_to 'Home' , root_path %>
+</p>

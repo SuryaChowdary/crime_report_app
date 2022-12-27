@@ -10,13 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_27_031332) do
+ActiveRecord::Schema.define(version: 2022_12_27_084118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cities", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "crime_reporters", force: :cascade do |t|
+    t.string "reporter_name"
+    t.string "phone"
+    t.string "gender"
+    t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -31,6 +40,7 @@ ActiveRecord::Schema.define(version: 2022_12_27_031332) do
     t.boolean "resolved"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "crime_reporter_id"
     t.index ["city_id"], name: "index_crimes_on_city_id"
     t.index ["locality_id"], name: "index_crimes_on_locality_id"
   end

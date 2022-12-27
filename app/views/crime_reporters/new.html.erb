@@ -1,0 +1,43 @@
+<h1> Add Crime Reporter details in  library </h1>
+<% if @crime_reporter.errors.any? %>
+  <h2> The following reasons prevented the Crime Reporter details to be saved </h2>
+    <ul>
+     <%= @crime_reporter.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+     <% end %>
+    </ul>
+<% end%>
+
+  <%= form_with scope: :crime_reporter, url: crime_reporters_path, local: true do |f| %>
+
+  <p> 
+    <%= f.label :Name %> <br/>
+    <%= f.text_field :reporter_name %>
+  </p>
+
+  <p>
+    <%= f.label :Email %><br/>
+    <%= f.text_field :email%>
+  </p>
+
+  <div class="field">    
+    <%= f.label :gender %></br>
+    <span class="option">Male<span><%= f.radio_button :gender, "Male" %></br>
+    <span class="option">Female<span><%= f.radio_button :gender, "Female" %></br>
+    <span class="option">Others<span><%= f.radio_button :gender, "Others" %></br>
+  </div>
+
+  <p> 
+    <%= f.label :Phone %> <br/>
+    <%= f.text_area :phone %>
+  </p>
+
+  <p>
+    <%= f.submit "Update Crime Reporter" %>
+  </p>
+
+  <p>
+    <%= link_to 'Back' , crime_reporters_path %>
+  </p>
+  
+<% end %>

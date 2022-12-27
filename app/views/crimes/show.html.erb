@@ -1,10 +1,11 @@
 <h1> List of Crimes</h1>
 
-<p><strong> Crime Locality : </strong><%= @crime.locality_id%>
-<p><strong> Reporter Name:</strong><%= @crime.name%>
-<p><strong> Crime Description: </strong><%= @crime.crime_description%>
-<p><strong> Crime Time: </strong><%= @crime.crime_time%>
-<p><strong> Priority: </strong><%= @crime.priority%>
-<p><strong> Resolved</strong><%= @crime.resolved%>
+<p><strong> Crime City : </strong><%= @crime.city_id%></p>
+<p><strong> Crime Locality : </strong><%= @crime.locality_id%></p>
+<p><strong> Reporter Name:</strong><%= @crime.name%></p>
+<p><strong> Crime Description: </strong><%= @crime.crime_description%></p>
+<p><strong> Crime Time: </strong><%= @crime.crime_time%></p>
+<p><strong> Priority: </strong><%= @crime.priority%></p>
+<p><strong> Resolved</strong><%= @crime.resolved%></p>
 
 <p><%= link_to "Back" , crimes_path%>

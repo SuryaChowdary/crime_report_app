@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :cities
   resources :localities
   resources :crimes
+  resources :crime_reporters
 end

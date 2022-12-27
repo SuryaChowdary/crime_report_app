@@ -48,7 +48,7 @@ class CrimesController < ApplicationController
   end
 
   def crime_params
-    params.require(:crime).permit(:name, :crime_description, :crime_time, :priority, :resolved, :city_id, :locality_id)
+    params.require(:crime).permit(:name, :crime_description, :crime_time, :priority, :resolved, :city_id, :locality_id, :crime_reporter_id)
   end
 
 end

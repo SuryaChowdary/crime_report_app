@@ -20,9 +20,9 @@
     <%= f.select :locality_id, Locality.all.collect {|x| [x.street, x.id]}, {} %>
   </p>
   
-  <p> 
-    <%= f.label :Name %> <br/>
-    <%= f.text_field :name %>
+  <p>
+    <%= f.label :Reporter%> <br/>
+    <%= f.select :crime_reporter_id, CrimeReporter.all.collect {|x| [x.reporter_name, x.id]}, {} %>
   </p>
  
   <p> 

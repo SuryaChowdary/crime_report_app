@@ -18,7 +18,7 @@
         <tr>
       <td><%= crime.city_id%></td>
       <td><%= crime.locality_id%></td>
-      <td><%= crime.name %></td>
+      <td><%= crime.crime_reporter.reporter_name if crime.crime_reporter %></td>
       <td><%= crime.crime_description%></td>
       <td><%= crime.crime_time%></td>
       <td><%= crime.priority%></td>
