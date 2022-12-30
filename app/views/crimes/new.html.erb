@@ -21,6 +21,11 @@
   </p>
   
   <p>
+    <%= f.label :Name %>
+    <%= f.text_field :name%>
+  </p>
+  
+  <p>
     <%= f.label :Reporter%> <br/>
     <%= f.select :crime_reporter_id, CrimeReporter.all.collect {|x| [x.reporter_name, x.id]}, {} %>
   </p>

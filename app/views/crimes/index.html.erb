@@ -4,6 +4,7 @@
     <tr>
       <th> City Name </th>
       <th> Locality Name</th>
+      <th> Name </th>
       <th> Reporter-Name </th>
       <th> Crime_Description</th>
       <th> Crime-Time</th>
@@ -18,6 +19,7 @@
         <tr>
       <td><%= crime.city.name%></td>
       <td><%= crime.locality.street%></td>
+      <td><%= crime.name%></td>
       <td><%= crime.crime_reporter.reporter_name if crime.crime_reporter %></td>
       <td><%= crime.crime_description%></td>
       <td><%= crime.crime_time%></td>
