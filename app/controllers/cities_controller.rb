@@ -1,4 +1,5 @@
 class CitiesController < ApplicationController
+  before_action :require_user, :cities
 
   def index
     @city = City.all

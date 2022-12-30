@@ -1,6 +1,7 @@
 class CrimesController < ApplicationController
 
   before_action :set_crime , only: [:show, :edit,:update, :destroy]
+  before_action :require_user, except: [:new, :create]
 
   def index 
     @crime = Crime.all

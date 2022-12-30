@@ -1,6 +1,7 @@
 class CrimeReportersController < ApplicationController
   
   before_action :set_crime_reporter, only: [:show, :edit,:update, :destroy]
+  before_action :require_user, :crime_reporters
 
   def index 
     @crime_reporter = CrimeReporter.all

@@ -1,7 +1,7 @@
 class LocalitiesController < ApplicationController
 
   before_action :set_locality , only: [:show, :edit,:update, :destroy]
-
+  before_action :require_user, :localities
   def index 
     @locality = Locality.all
   end 
