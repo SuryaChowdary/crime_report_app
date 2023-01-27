@@ -1,0 +1,7 @@
+<% if @crime_reporter.errors.any? %>
+  <% if params[:action] == "create" %>
+    $("#newerrors").html("<%= j(render 'crime_reporters/errors', crime_reporter: @crime_reporter) %>");
+  <% elsif params[:action] == "update" %>
+    $("#editerrors-<%= @crime_reporter.id %>").html("<%= j(render 'crime_reporters/errors', crime_reporter: @crime_reporter) %>");
+  <% end %> 
+<% end %>

@@ -4,7 +4,7 @@ class CrimesController < ApplicationController
   before_action :require_user, except: [:new, :create]
 
   def index 
-    @crime = Crime.all
+    @crime = Crime.all.order('created_at ASC')
   end 
   
   def new 

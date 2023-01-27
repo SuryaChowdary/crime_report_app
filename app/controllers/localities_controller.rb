@@ -1,9 +1,10 @@
 class LocalitiesController < ApplicationController
 
   before_action :set_locality , only: [:show, :edit,:update, :destroy]
-  before_action :require_user, :localities
+  before_action :require_user
+  
   def index 
-    @locality = Locality.all
+    @locality = Locality.all.order('created_at ASC')
   end 
   
   def new 

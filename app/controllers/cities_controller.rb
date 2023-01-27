@@ -1,8 +1,8 @@
 class CitiesController < ApplicationController
-  before_action :require_user, :cities
+  before_action :require_user
 
   def index
-    @city = City.all
+    @city = City.all.order('created_at ASC')
   end
 
   def show

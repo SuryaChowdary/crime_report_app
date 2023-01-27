@@ -1,0 +1,36 @@
+<!-- Add Crime Reporter form -->
+<div class="container">
+  <div class="row justify-content-center mt-4 ">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">Add New Crime Reporter</div>
+        <div class="card-body">
+          <%= form_with scope: :crime_reporter, url: crime_reporters_path, data: {remote: true} do |f| %>
+            <div class="form-group"> 
+              <%= f.label :Name %> <br/>
+              <%= f.text_field :reporter_name, class: 'form-control' %>
+            </div>
+            <div class="form-group"> 
+              <%= f.label :Email %> <br/>
+              <%= f.text_field :email, class: 'form-control' %>
+            </div>
+            <div class="form-group"> 
+              <%= f.label :Phone %> <br/>
+              <%= f.text_field :phone, class: 'form-control' %>
+            </div>
+            <div class="form-group">    
+              <%= f.label :Gender %></br>
+              <span class="option">Male<span><%= f.radio_button :gender, "Male" %></br>
+              <span class="option">Female<span><%= f.radio_button :gender, "Female" %></br>
+              <span class="option">Others<span><%= f.radio_button :gender, "Others" %></br>
+            </div>
+            <div class="card-footer text-muted">
+              <%= f.submit "Add Crime Reporter", class: 'btn btn-primary' %>
+              <%= link_to 'Back' , crime_reporters_path, class:'btn btn-secondary' %>
+            </div>
+          <% end%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

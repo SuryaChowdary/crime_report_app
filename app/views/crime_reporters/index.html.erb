@@ -1,5 +1,5 @@
 <h1> List of all Crime Reporters in Portal</h1>
-<table>
+<table class="table">
   <thead>
     <tr>
       <th> Name </th>
@@ -9,20 +9,33 @@
       <th colspan="3"> Actions </th>
     </tr>
   </thead>
-    <tbody>
-      <% @crime_reporter.each do |crime_reporter| %>
-        <tr>
-      <td><%= crime_reporter.reporter_name %></td>
-      <td><%= crime_reporter.gender %></td>
-      <td><%= crime_reporter.phone %></td>
-      <td><%= crime_reporter.email %></td>
-      <td><%= link_to 'Show', crime_reporter_path(crime_reporter) %></td>
-      <td><%= link_to 'Edit', edit_crime_reporter_path(crime_reporter) %></td>
-      <td><%= link_to 'Delete', crime_reporter_path(crime_reporter) , method: :delete , data: {confirm: "Are you sure?"}%></td>
-        </tr>
+    <tbody id= "crime_reporter-table">
+      <% @crime_reporters.each do |crime_reporter| %>
+        <%= render 'crime_reporter' , crime_reporter: crime_reporter %>
       <% end %>
     </tbody>
 </table>
+
+<!-- Button trigger modal for adding new client -->
+<button type="button", class="btn btn-primary", data-bs-toggle="modal", data-bs-target="#newModal">
+  Add New Crime Reporter
+</button>
+<!--  Add New Client Modal -->
+<div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add new Crime Reporter</h5>
+        <button type="button" id= "closeNewForm" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="newerrors"></div>
+          <%= render 'form' %>
+      </div>
+    </div>
+  </div>
 
 <p>
   <%= link_to 'Add new Crime Reporter' , new_crime_reporter_path %>
