@@ -4,7 +4,7 @@ class LocalitiesController < ApplicationController
   before_action :require_user
   
   def index 
-    @locality = Locality.all.order('created_at ASC')
+    @localities = Locality.all.order('created_at ASC')
   end 
   
   def new 
@@ -14,10 +14,14 @@ class LocalitiesController < ApplicationController
   def create 
     @locality = Locality.new(locality_params)
     if @locality.save
-      flash[:notice] = "Locality name is added successfully"
-      redirect_to  localities_path(@locality)
-    else 
-      render 'new'
+      respond_to do|format|
+        format.html {redirect_to localities_path}
+        format.js {render :content_type => 'application/javascript'}
+      end
+    else
+      respond_to do|format|
+        format.js {render 'errors'}
+      end
     end
   end 
 
@@ -31,16 +35,23 @@ class LocalitiesController < ApplicationController
 
   def update
     if @locality.update(locality_params)
-      flash[:notice] = "Locality name Edited Successfully"
-      redirect_to  localities_path(@locality)
-    else 
-      render 'edit'
+      respond_to do |format|
+        format.html { redirect_to @locality, notice: 'Locality details was successfully updated.' }
+        format.js { render :content_type => 'application/javascript' }
+      end
+    else
+      respond_to do |format|
+        format.js { render 'errors' }
+      end
     end 
   end
 
   def destroy
     @locality.destroy
-    redirect_to localities_path
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
   
   private

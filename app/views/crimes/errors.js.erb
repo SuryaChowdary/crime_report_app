@@ -1,7 +1,7 @@
 <% if @crime.errors.any? %>
   <% if params[:action] == "create" %>
-    $("#newerrors").html("<%= j(render 'crimes/errors', city: @city) %>");
+    $("#newerrors").html("<%= j(render 'crimes/errors', crime: @crime) %>");
   <% elsif params[:action] == "update" %>
-    $("#editerrors-<%= @crime.id %>").html("<%= j(render 'crimes/errors', city: @city) %>");
+    $("#editerrors-<%= @crime.id %>").html("<%= j(render 'crimes/errors', crime: @crime) %>");
   <% end %> 
 <% end %>

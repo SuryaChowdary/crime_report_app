@@ -1,0 +1,86 @@
+ <tr id="locality-<%= locality.id%>">
+  <td><%= locality.street %></td>
+  <td><%= link_to 'Show', locality_path(locality), class: 'btn btn-info', data: {remote: true, bs_toggle: "modal", bs_target: "#showlocality-#{locality.id}"} %></td>
+  <td><%= link_to 'Edit', edit_locality_path(locality),class: 'btn btn-primary', data: {remote: true, bs_toggle: "modal", bs_target: "#editlocality-#{locality.id}"} %></td>
+  <td><%= link_to 'Delete', locality_path(locality) , method: :delete , class: 'btn btn-danger', data: {remote: true, confirm: "Are you sure?"} %></td>
+</tr>
+
+<!-- Edit Locality Modal -->
+<div class="modal fade" id="editlocality-<%= locality.id %>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit Locality Details</h5>
+        <button type="button" class="closeEditForm" data-bs-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="editerrors-<%= locality.id %>"></div>
+        <div class="container">
+          <div class="row justify-content-center mt-4 ">
+            <div class="col-md-8">
+              <div class="card">
+                <div class="card-header">Edit Locality Details</div>
+                <div class="card-body">
+                  <%= form_with(model: locality, data: { remote: true}, method: :patch, id: 'edit-form' ) do |f| %>
+                    <div class="form-group">
+                      <%= f.label :Street %>
+                      <%= f.text_field :street, class: 'form-control'%>
+                    </div
+                    <div class="form-group">
+                      <label for="city_id">Select City</label>
+                      <%= f.select :city_id, City.all.collect {|x| [x.name, x.id]}, {}, class: 'form-control' %>
+                    </div>
+                    <div class="card-footer text-muted">
+                      <%= f.submit " Update Details", class: 'btn btn-primary'%>
+                      <%= link_to 'Back', localities_path, class: 'btn btn-secondary' %>          
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Locality Show page modal -->
+<div class="modal fade" id="showlocality-<%= locality.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Locality Details</h4>
+        <button type="button" id= "closeShowForm" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <div class="container mt-5">
+          <div class="card">
+            <div class="card-header">
+              <h1 class="card-title"><%= locality.street %></h1>
+            </div>
+            <div class="card-body">
+              <% if locality.crimes.any? %>
+                <h2 class="card-subtitle mb-2 text-muted">List of all crimes in <%= locality.street %></h2>
+                <% locality.crimes.each do |crime| %>
+                  <div class="crime-info">
+                    <p><strong>Reporter Name:</strong> <%= crime.name %></p>
+                    <p><strong>Crime Description:</strong> <%= crime.crime_description %></p>
+                    <p><strong>Crime Time:</strong> <%= crime.crime_time %></p>
+                    <p><strong>Priority:</strong> <%= crime.priority %></p>
+                    <p><strong>Resolved:</strong> <%= crime.resolved %></p><br/>
+                  </div>
+                <% end %>
+              <% else %>
+               <h2 class="card-subtitle mb-2 text-muted">No Crimes were reported in <%= locality.street %> </h2>
+              <% end %>
+            <div class="card-footer text-muted">
+              <%= link_to 'Back', localities_path, class: 'btn btn-secondary' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<% if @locality.errors.any? %>
+  <% if params[:action] == "create" %>
+    $("#newerrors").html("<%= j(render 'localities/errors', locality: @locality) %>");
+  <% elsif params[:action] == "update" %>
+    $("#editerrors-<%= @locality.id %>").html("<%= j(render 'localities/errors', locality: @locality) %>");
+  <% end %> 
+<% end %>
