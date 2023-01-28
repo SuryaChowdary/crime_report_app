@@ -1,8 +1,9 @@
 class CitiesController < ApplicationController
+  
   before_action :require_user
 
   def index
-    @city = City.all.order('created_at ASC')
+    @cities = City.all.order('created_at ASC')
   end
 
   def show
@@ -16,11 +17,15 @@ class CitiesController < ApplicationController
   def create 
     @city = City.new(params.require(:city).permit(:name))
     if @city.save
-      flash[:notice] = "City was Added Successfully"
-      redirect_to cities_path(@city)
+      respond_to do|format|
+        format.html {redirect_to cities_path}
+        format.js {render :content_type => 'application/javascript'}
+      end
     else
-      render 'new'
-    end
+      respond_to do|format|
+        format.js {render 'errors'}
+      end
+    end 
   end
 
   def edit
@@ -30,18 +35,24 @@ class CitiesController < ApplicationController
   def update
     @city = City.find(params[:id])
     if @city.update(params.require(:city).permit(:name))
-      flash[:notice] = "City details were edited successfully"
-      redirect_to cities_path(@city)
+      respond_to do |format|
+        format.html { redirect_to @city, notice: 'City details was successfully updated.' }
+        format.js { render :content_type => 'application/javascript' }
+      end
     else
-      render 'edit'
-    end
+      respond_to do |format|
+        format.js { render 'errors' }
+      end
+    end 
   end
 
     def destroy
       @city = City.find(params[:id])
       if @city.destroy
-        flash[:notice] = "City was deleted Successfully"
-        redirect_to cities_path
+        respond_to do |format|
+          format.html
+          format.js {render }
+        end
       end
     end
 

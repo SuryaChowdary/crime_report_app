@@ -1,5 +1,5 @@
 <h1> List of all Cities </h1>
-<table>
+<table class="table">
   <thead>
     <tr>
       <th> Name </th>
@@ -7,18 +7,33 @@
     </tr>
     <tr>
   </thead>
-    <tbody>
-      <% @city.each do |city| %>
-        <tr>
-      <td><%= city.name %></td>
-      <td><%= link_to 'Show', city_path(city) %></td>
-      <td><%= link_to 'Edit', edit_city_path(city) %></td>
-      <td><%= link_to 'Delete', city_path(city) , method: :delete , data: {confirm: "Are you sure?"}%></td>
-        </tr>
+    <tbody id="city-table">
+      <% @cities.each do |city| %>
+        <%= render 'city', city: city  %>
       <% end %>
     </tbody>
 </table>
 
+<!-- Button trigger modal for adding new client -->
+<button type="button", class="btn btn-primary", data-bs-toggle="modal", data-bs-target="#newModal">
+  Add New City
+</button>
+<!--  Add New Client Modal -->
+<div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add new Crime Reporter</h5>
+        <button type="button" id= "closeNewForm" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="newerrors"></div>
+          <%= render 'form' %>
+      </div>
+    </div>
+  </div>
 <p>
   <%= link_to 'Add new City' , new_city_path %>
 </p>
