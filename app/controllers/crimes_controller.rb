@@ -4,7 +4,7 @@ class CrimesController < ApplicationController
   before_action :require_user, except: [:new, :create]
 
   def index 
-    @crime = Crime.all.order('created_at ASC')
+    @crimes = Crime.all.order('created_at ASC')
   end 
   
   def new 
@@ -14,11 +14,15 @@ class CrimesController < ApplicationController
   def create 
     @crime = Crime.new(crime_params)
     if @crime.save
-      flash[:notice] = "Crime name is added successfully"
-      redirect_to  crimes_path(@crime)
-    else 
-      render 'new'
-    end
+      respond_to do|format|
+        format.html {redirect_to crimes_path}
+        format.js {render :content_type => 'application/javascript'}
+      end
+    else
+      respond_to do|format|
+        format.js {render 'errors'}
+      end
+    end 
   end 
 
   def show 
@@ -31,16 +35,23 @@ class CrimesController < ApplicationController
 
   def update
     if @crime.update(crime_params)
-      flash[:notice] = "Crime name Edited Successfully"
-      redirect_to  crimes_path(@crime)
-    else 
-      render 'edit'
+      respond_to do |format|
+        format.html { redirect_to @crime, notice: 'Crime details was successfully updated.' }
+        format.js { render :content_type => 'application/javascript' }
+      end
+    else
+      respond_to do |format|
+        format.js { render 'errors' }
+      end
     end 
   end
 
   def destroy
     @crime.destroy
-    redirect_to crimes_path
+    respond_to do |format|
+      format.html
+      format.js {render }
+    end
   end
   
   private
