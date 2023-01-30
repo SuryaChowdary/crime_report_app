@@ -1,10 +1,10 @@
  <tr id="crime_reporter-<%= crime_reporter.id %>">
-  <td><%= crime_reporter.reporter_name %></td>
+  <td><%= crime_reporter.name %></td>
   <td><%= crime_reporter.gender %></td>
   <td><%= crime_reporter.phone %></td>
   <td><%= crime_reporter.email %></td>
-  <td><%= link_to 'Show', crime_reporter_path(crime_reporter), class: 'btn btn-primary' %></td>
-  <td><%= link_to 'Edit', edit_crime_reporter_path(crime_reporter),class: 'btn btn-secondary', data: {remote: true, bs_toggle: "modal", bs_target: "#editcrime_reporter-#{crime_reporter.id}"} %></td>
+  <td><%= link_to 'Show', crime_reporter_path(crime_reporter), class: 'btn btn-info', data:{remote: true, bs_toggle: "modal", bs_target: "#showcrime_reporter-#{crime_reporter.id}"} %></td>
+  <td><%= link_to 'Edit', edit_crime_reporter_path(crime_reporter),class: 'btn btn-primary', data: {remote: true, bs_toggle: "modal", bs_target: "#editcrime_reporter-#{crime_reporter.id}"} %></td>
   <td><%= link_to 'Delete', crime_reporter_path(crime_reporter) ,method: :delete , data: {remote: true, confirm: "Are you sure?"},class: 'btn btn-danger' %></td>
 </tr>
 
@@ -29,7 +29,7 @@
                   <%= form_with(model: crime_reporter, data: { remote: true}, method: :patch, id: 'edit-form' ) do |f| %>
                      <div class="form-group"> 
                       <%= f.label :Name %> <br/>
-                      <%= f.text_field :reporter_name, class: 'form-control' %>
+                      <%= f.text_field :name, class: 'form-control' %>
                     </div>
                     <div class="form-group">
                       <%= f.label :Phone%> <br/>
@@ -52,6 +52,45 @@
                   <% end %>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Crime Reporter Show page modal -->
+<div class="modal fade" id="showcrime_reporter-<%= crime_reporter.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Crime Reporter Details</h4>
+        <button type="button" id= "closeShowForm" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <div class="container mt-5">
+          <div class="card">
+            <div class="card-header">
+              <h1 class="card-title"><%= crime_reporter.name %></h1>
+            </div>
+            <div class="card-body">
+              <% if crime_reporter.crimes.any? %>
+                <h2 class="card-subtitle mb-2 text-muted">List of all crimes reported by  <%= crime_reporter.name %></h2>
+                <% crime_reporter.crimes.each do |crime| %>
+                  <div class="crime-info">
+                    <p><strong>Reporter Name:</strong> <%= crime.name %></p>
+                    <p><strong>Crime Description:</strong> <%= crime.crime_description %></p>
+                    <p><strong>Crime Time:</strong> <%= crime.crime_time %></p>
+                    <p><strong>Priority:</strong> <%= crime.priority %></p>
+                    <p><strong>Resolved:</strong> <%= crime.resolved %></p><br/>
+                  </div>
+                <% end %>
+              <% else %>
+               <h2 class="card-subtitle mb-2 text-muted">No Crimes were reported by <%= crime_reporter.name %> </h2>
+              <% end %>
+            <div class="card-footer text-muted">
+              <%= link_to 'Back', crime_reporters_path, class: 'btn btn-secondary' %>
             </div>
           </div>
         </div>

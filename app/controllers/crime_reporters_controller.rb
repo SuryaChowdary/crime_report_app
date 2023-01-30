@@ -61,7 +61,7 @@ class CrimeReportersController < ApplicationController
   end
 
   def crime_reporter_params
-    params.require(:crime_reporter).permit(:reporter_name, :gender, :phone , :email)
+    params.require(:crime_reporter).permit(:name, :gender, :phone , :email)
   end
 
 end

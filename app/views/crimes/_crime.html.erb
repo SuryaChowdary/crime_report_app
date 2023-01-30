@@ -2,7 +2,7 @@
   <td><%= crime.city.name%></td>
   <td><%= crime.locality.street%></td>
   <td><%= crime.name%></td>
-  <td><%= crime.crime_reporter.reporter_name if crime.crime_reporter %></td>
+  <td><%= crime.crime_reporter.name if crime.crime_reporter %></td>
   <td><%= crime.crime_description%></td>
   <td><%= crime.crime_time%></td>
   <% if crime.priority == 'High' %>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="form-group">
                       <label for="crime_reporter_id">Select Crime Reporter</label>
-                      <%= f.select :crime_reporter_id, CrimeReporter.all.collect {|x| [x.reporter_name, x.id]}, {}, class: 'form-control' %>
+                      <%= f.select :crime_reporter_id, CrimeReporter.all.collect {|x| [x.name, x.id]}, {}, class: 'form-control' %>
                     </div>
                     <div class="form-group"> 
                       <%= f.label :description %> <br/>
