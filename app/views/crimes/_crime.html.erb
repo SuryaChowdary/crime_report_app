@@ -38,12 +38,12 @@
                 <div class="card-body">
                   <%= form_with(model: crime, data: { remote: true}, method: :patch, id: 'edit-form' ) do |f| %>
                     <div class="form-group">
-                      <label for="city_id">Select City</label>
-                      <%= f.select :city_id, City.all.collect {|x| [x.name, x.id]}, {}, class: 'form-control' %>
+                      <%= f.label :City %>
+                      <%= f.collection_select :city_id, City.all, :id, :name,  {prompt: "Select City"}, {include_hidden: false, class: "form-control", id: "city-#{crime.id}"} %>
                     </div>
                     <div class="form-group">
-                      <label for="locality_id">Select Locality</label>
-                      <%= f.select :locality_id, Locality.all.collect {|x| [x.street, x.id]}, {}, class: 'form-control' %>
+                      <%= f.label :Locality %>
+                      <%= f.collection_select(:locality_id, Locality.where(city_id: crime.city.id), :id, :street, {include_blank: "Select Locality"}, {class: "form-control", id: "locality-#{crime.id}"}) %>
                     </div>
                     <div class="form-group">
                       <%= f.label :Name %>
@@ -85,6 +85,19 @@
       </div>
     </div>
   </div>
+  <script>
+    $(document).on('change', '#city-<%= crime.id %>', function getLocalities() {
+      var selectedCities = $(this).val();
+      $.ajax({
+        url: "/locality_by_city",
+        method: "GET",
+        data: { cities: selectedCities },
+        success: function(data) {
+          $("#locality-<%= crime.id %>").html(data);
+        }
+      });
+    });
+  </script>
 </div>
 
 <!-- Crime Show page modal -->

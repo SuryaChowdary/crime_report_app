@@ -40,7 +40,20 @@
           <%= render 'form' %>
       </div>
     </div>
-  </div>
+    <script>
+    $(document).on('change', '#city', function getLocalities() {
+      var selectedCities = $(this).val();
+      $.ajax({
+        url: "/locality_by_city",
+        method: "GET",
+        data: { cities: selectedCities },
+        success: function(data) {
+          $("#locality_ids").html(data);
+        }
+      });
+    });
+  </script>
+</div>
   <br/>
 <p>
   <%= link_to 'Home' , root_path %>

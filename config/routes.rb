@@ -12,4 +12,7 @@ Rails.application.routes.draw do
   resources :crime_reporters
   get 'pages/about' , to: 'pages#about'
   #resources :citizens, only: [:new]
+  get '/locality_by_city', to: 'crimes#locality_by_city', as: 'locality_by_city'
+  get '/update_locality', to: 'citizens#update_locality', as: 'update_locality'
+
 end

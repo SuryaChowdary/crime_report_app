@@ -1,5 +1,5 @@
 class CitizensController < ApplicationController
-  before_action :authenticate_user!, except: [:new, :create]
+  before_action :authenticate_user!, except: [:new, :create, :update_locality]
   
   def new
     @crime = Crime.new
@@ -12,6 +12,13 @@ class CitizensController < ApplicationController
     redirect_to root_path
     else
       render new
+    end
+  end
+
+  def update_locality
+    @localities = Locality.where(city_id: params[:cities])
+    respond_to do |format|
+      format.js { render :update_locality }
     end
   end
   
