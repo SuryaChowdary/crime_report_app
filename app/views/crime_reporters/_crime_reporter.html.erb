@@ -3,7 +3,9 @@
   <td><%= crime_reporter.gender %></td>
   <td><%= crime_reporter.phone %></td>
   <td><%= crime_reporter.email %></td>
+  <!-- Crime Reporter show modal trigger -->
   <td><%= link_to 'Show', crime_reporter_path(crime_reporter), class: 'btn btn-info', data:{remote: true, bs_toggle: "modal", bs_target: "#showcrime_reporter-#{crime_reporter.id}"} %></td>
+  <!-- Crime Reporter edit modal trigger -->
   <td><%= link_to 'Edit', edit_crime_reporter_path(crime_reporter),class: 'btn btn-primary', data: {remote: true, bs_toggle: "modal", bs_target: "#editcrime_reporter-#{crime_reporter.id}"} %></td>
   <td><%= link_to 'Delete', crime_reporter_path(crime_reporter) ,method: :delete , data: {remote: true, confirm: "Are you sure?"},class: 'btn btn-danger' %></td>
 </tr>

@@ -1,21 +1,26 @@
 class CitiesController < ApplicationController
   
+  before_action :set_city, only: [:show, :edit,:update, :destroy]
   before_action :require_user
 
+  # Display a list of all cities
   def index
     @cities = City.all.order('created_at ASC')
   end
 
+  # Display details of specific city 
   def show
-    @city = City.find(params[:id])
+
   end
 
+  # Add new City
   def new 
     @city = City.new
   end
 
+  # Save new city
   def create 
-    @city = City.new(params.require(:city).permit(:name))
+    @city = City.new(city_params)
     if @city.save
       respond_to do|format|
         format.html {redirect_to cities_path}
@@ -28,13 +33,14 @@ class CitiesController < ApplicationController
     end 
   end
 
+  # Edit specific city
   def edit
-    @city = City.find(params[:id])
+
   end
 
+  # Update specific city details
   def update
-    @city = City.find(params[:id])
-    if @city.update(params.require(:city).permit(:name))
+    if @city.update(city_params)
       respond_to do |format|
         format.html { redirect_to @city, notice: 'City details was successfully updated.' }
         format.js { render :content_type => 'application/javascript' }
@@ -46,14 +52,26 @@ class CitiesController < ApplicationController
     end 
   end
 
-    def destroy
-      @city = City.find(params[:id])
-      if @city.destroy
-        respond_to do |format|
-          format.html
-          format.js {render }
-        end
+  # Delete specific city by finding its id
+  def destroy
+    if @city.destroy
+      respond_to do |format|
+        format.html
+        format.js {render }
       end
     end
+  end
+
+  private
+  
+  # private method to find cities by its id
+  def set_city
+    @city = City.find(params[:id])
+  end
+
+  # private method to pass cities parameters for creating and updating cities
+  def city_params
+    params.require(:city).permit(:name)
+  end
 
 end

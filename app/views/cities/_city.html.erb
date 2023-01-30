@@ -1,6 +1,8 @@
 <tr id="city-<%= city.id %>">
   <td><%= city.name %></td>
+  <!-- Show city modal button trigger -->
   <td><%= link_to 'Show', city_path(city), class: 'btn btn-primary', data: {remote: true, bs_toggle: "modal", bs_target: "#showcity-#{city.id}"} %></td>
+  <!-- Edit City Modal button trigger -->
   <td><%= link_to 'Edit', edit_city_path(city), class: 'btn btn-secondary', data: {remote: true, bs_toggle: "modal", bs_target:"#editcity-#{city.id}"    } %></td>
   <td><%= link_to 'Delete', city_path(city) , method: :delete , data: {remote: true, confirm: "Are you sure?"}, class: 'btn btn-danger' %></td>
 </tr>

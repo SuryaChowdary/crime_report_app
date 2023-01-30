@@ -1,6 +1,8 @@
  <tr id="locality-<%= locality.id%>">
   <td><%= locality.name %></td>
+  <!-- Button trigger for Show locality modal -->
   <td><%= link_to 'Show', locality_path(locality), class: 'btn btn-info', data: {remote: true, bs_toggle: "modal", bs_target: "#showlocality-#{locality.id}"} %></td>
+  <!-- Button trigger for edit locality modal -->
   <td><%= link_to 'Edit', edit_locality_path(locality),class: 'btn btn-primary', data: {remote: true, bs_toggle: "modal", bs_target: "#editlocality-#{locality.id}"} %></td>
   <td><%= link_to 'Delete', locality_path(locality) , method: :delete , class: 'btn btn-danger', data: {remote: true, confirm: "Are you sure?"} %></td>
 </tr>

@@ -13,7 +13,9 @@
     <td style="color: green"><%= crime.priority %></td>
   <% end %>
   <td><%= crime.resolved%></td>
+  <!-- Button trigger for crime show modal -->
   <td><%= link_to 'Show', crime_path(crime), class: 'btn btn-info', data: {remote: true, bs_toggle: "modal", bs_target:"#showcrime-#{crime.id}"} %></td>
+  <!-- Button trigger for edit crime modal -->
   <td><%= link_to 'Edit', edit_crime_path(crime), class: 'btn btn-primary', data: {remote: true, bs_toggle: "modal", bs_target: "#editcrime-#{crime.id}"} %></td>
   <td><%= link_to 'Delete', crime_path(crime) , method: :delete , class: 'btn btn-danger', data: { remote: true,confirm: "Are you sure?"}%></td>
 </tr>
