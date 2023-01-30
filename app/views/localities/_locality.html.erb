@@ -1,5 +1,5 @@
  <tr id="locality-<%= locality.id%>">
-  <td><%= locality.street %></td>
+  <td><%= locality.name %></td>
   <td><%= link_to 'Show', locality_path(locality), class: 'btn btn-info', data: {remote: true, bs_toggle: "modal", bs_target: "#showlocality-#{locality.id}"} %></td>
   <td><%= link_to 'Edit', edit_locality_path(locality),class: 'btn btn-primary', data: {remote: true, bs_toggle: "modal", bs_target: "#editlocality-#{locality.id}"} %></td>
   <td><%= link_to 'Delete', locality_path(locality) , method: :delete , class: 'btn btn-danger', data: {remote: true, confirm: "Are you sure?"} %></td>
@@ -25,8 +25,8 @@
                 <div class="card-body">
                   <%= form_with(model: locality, data: { remote: true}, method: :patch, id: 'edit-form' ) do |f| %>
                     <div class="form-group">
-                      <%= f.label :Street %>
-                      <%= f.text_field :street, class: 'form-control'%>
+                      <%= f.label :Name %>
+                      <%= f.text_field :name, class: 'form-control'%>
                     </div
                     <div class="form-group">
                       <label for="city_id">Select City</label>
@@ -58,11 +58,11 @@
         <div class="container mt-5">
           <div class="card">
             <div class="card-header">
-              <h1 class="card-title"><%= locality.street %></h1>
+              <h1 class="card-title"><%= locality.name %></h1>
             </div>
             <div class="card-body">
               <% if locality.crimes.any? %>
-                <h2 class="card-subtitle mb-2 text-muted">List of all crimes in <%= locality.street %></h2>
+                <h2 class="card-subtitle mb-2 text-muted">List of all crimes in <%= locality.name %></h2>
                 <% locality.crimes.each do |crime| %>
                   <div class="crime-info">
                     <p><strong>Reporter Name:</strong> <%= crime.name %></p>
@@ -73,7 +73,7 @@
                   </div>
                 <% end %>
               <% else %>
-               <h2 class="card-subtitle mb-2 text-muted">No Crimes were reported in <%= locality.street %> </h2>
+               <h2 class="card-subtitle mb-2 text-muted">No Crimes were reported in <%= locality.name %> </h2>
               <% end %>
             <div class="card-footer text-muted">
               <%= link_to 'Back', localities_path, class: 'btn btn-secondary' %>

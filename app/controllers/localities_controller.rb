@@ -61,7 +61,7 @@ class LocalitiesController < ApplicationController
   end
 
   def locality_params
-    params.require(:locality).permit(:street , :city_id)
+    params.require(:locality).permit(:name , :city_id)
   end
 
 end

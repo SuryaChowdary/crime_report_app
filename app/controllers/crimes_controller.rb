@@ -53,10 +53,6 @@ class CrimesController < ApplicationController
       format.js {render }
     end
   end
-
-  # def locality_by_city
-  #   @localities = Locality.where(city_id: params[:cities])
-  # end
   
   def locality_by_city
     @localities = Locality.where(city_id: params[:cities])
