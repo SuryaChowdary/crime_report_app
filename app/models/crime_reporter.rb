@@ -1,5 +1,5 @@
 class CrimeReporter < ApplicationRecord
-  has_many :crimes
+  has_many :crimes, dependent: :destroy
   validates :name , presence: true, length: {minimum: 3 , maximum: 30}
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email , presence: true , 
